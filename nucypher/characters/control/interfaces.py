@@ -45,7 +45,9 @@ def character_control_interface(func):
         response_with_metadata = instance.serializer.build_response_metadata(response=response, duration=duration)
 
         # Emit
-        return instance.emitter(response=response_with_metadata)
+        emitted_response = instance.emitter(response=response_with_metadata)
+        emitted_response.headers["Content-Type"] = "application/json"
+        return emitted_response
 
     return wrapped
 
