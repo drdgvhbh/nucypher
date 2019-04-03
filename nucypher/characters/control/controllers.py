@@ -189,7 +189,7 @@ class WebController(CharacterController):
         # Serialize For WSGI <-> Bytes <-> Unicode <-> JSON <-> Hex/B64 <-> Native Requests
         self._internal_controller.serialize = True
         self._web_app = Flask(self.app_name)
-        CORS(self._web_app)
+        CORS(self._web_app, resources={r"/*": {"origins": "*"}})
 
         # Return FlaskApp decorator
         return self._web_app
