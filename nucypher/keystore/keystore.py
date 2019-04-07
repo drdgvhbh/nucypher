@@ -16,6 +16,7 @@ along with nucypher.  If not, see <https://www.gnu.org/licenses/>.
 """
 from bytestring_splitter import BytestringSplitter
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 from typing import Union
 from umbral.kfrags import KFrag
 from umbral.keys import UmbralPublicKey
@@ -131,7 +132,11 @@ class KeyStore(object):
         """
         session = session or self._session_on_init_thread
 
-        policy_arrangement = session.query(PolicyArrangement).filter_by(id=arrangement_id).first()
+
+        policy_arrangement = session.query(PolicyArrangement).filter(
+            PolicyArrangement.id == arrangement_id,
+            PolicyArrangement.expiration >= datetime.utcnow()).first()
+
 
         if not policy_arrangement:
               raise NotFound("No PolicyArrangement {} found.".format(arrangement_id))
