@@ -37,18 +37,17 @@ flask-limiter = "*"
 
 [dev-packages]
 # Pytest
-pytest = "==4.0.2"
+pytest = "*"
 pytest-xdist = "*"
 pytest-mypy = "*"
 pytest-twisted = "*"
-pytest-cov = "==2.5.1"
+pytest-cov = "*"
 pytest-mock = "*"
 # Tools
 moto = "*"
 mypy = "*"
 # Coverage
 coverage = "*"
-python-coveralls = "*"
 # Deployment
 py-solc = {editable = true,git = "https://github.com/nucypher/py-solc.git",ref = "v5.0.0-eol.0"}
 ansible = "*"
